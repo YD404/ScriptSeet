@@ -1,0 +1,219 @@
+/* Print-specific styles */
+@media print {
+
+    /* Page setup for B4 */
+    @page {
+        size: B4;
+        margin: 10mm;
+    }
+
+    /* Reset mobile layout for print */
+    * {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    body {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    /* Compact header for print */
+    header {
+        position: static;
+        height: auto;
+        border: none;
+        box-shadow: none;
+        page-break-after: avoid;
+        padding: 2mm;
+        min-height: auto;
+    }
+
+    .header-top {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: 2mm;
+        gap: 5px;
+    }
+
+    .title-input,
+    .date-input {
+        border: none;
+        background: transparent;
+        padding: 0;
+        font-size: 0.9rem;
+    }
+
+    .title-input {
+        width: 70%;
+    }
+
+    .date-input {
+        width: 30%;
+        text-align: right;
+    }
+
+    /* Hide controls in print */
+    .controls-area {
+        display: none;
+    }
+
+    .fab-container {
+        display: none;
+    }
+
+    /* Compact table for print - many rows per page */
+    .table-container {
+        width: 100%;
+        overflow: visible;
+    }
+
+    table {
+        min-width: auto;
+        width: 100%;
+        page-break-inside: auto;
+        border-collapse: collapse;
+    }
+
+    thead {
+        display: table-header-group;
+    }
+
+    th {
+        background-color: var(--color-bg-gray);
+        font-weight: 500;
+        color: var(--color-text);
+        padding: 1mm;
+        font-size: 0.75rem;
+        height: auto;
+        border: 1px solid var(--color-border);
+    }
+
+    tbody tr {
+        display: table-row;
+        page-break-inside: avoid;
+        page-break-after: auto;
+    }
+
+    tbody td {
+        display: table-cell;
+        padding: 1mm;
+        border: 1px solid var(--color-border);
+        height: auto;
+        min-height: auto;
+    }
+
+    /* Hide action column in print */
+    .col-action,
+    .col-action-cell {
+        display: none;
+    }
+
+    /* Reset column widths and orders */
+    .col-s,
+    .col-c,
+    .col-t,
+    .col-clip,
+    .col-judge,
+    .col-scene,
+    .col-ng,
+    .col-remarks {
+        width: auto;
+        order: initial;
+    }
+
+    /* Remove mobile labels in print */
+    .col-s::before,
+    .col-c::before,
+    .col-t::before,
+    .col-clip::before,
+    .col-judge::before,
+    .col-scene::before,
+    .col-ng::before,
+    .col-remarks::before {
+        content: none;
+        display: none;
+    }
+
+    /* Input fields in print - no borders */
+    td input {
+        border: none !important;
+        background: transparent !important;
+        text-align: center;
+        padding: 0;
+        height: auto;
+        font-size: 0.7rem;
+        outline: none !important;
+    }
+
+    /* Specific column widths for B4 print */
+    .col-s {
+        width: 6%;
+    }
+
+    .col-c {
+        width: 5%;
+    }
+
+    .col-t {
+        width: 5%;
+    }
+
+    .col-clip {
+        width: 14%;
+    }
+
+    .col-judge {
+        width: 8%;
+    }
+
+    .col-scene {
+        width: 20%;
+    }
+
+    .col-ng {
+        width: 20%;
+    }
+
+    .col-remarks {
+        width: 22%;
+    }
+
+    /* Location row in print */
+    .location-row {
+        background-color: #fff3e0;
+    }
+
+    .location-row td:not(.col-action-cell) {
+        width: auto;
+    }
+
+    .location-input {
+        color: #d32f2f;
+        font-weight: bold;
+        text-align: center;
+        font-size: 0.8rem;
+    }
+
+    /* Judge cell colors */
+    .status-ok {
+        background-color: var(--status-ok) !important;
+        color: #b71c1c;
+    }
+
+    .status-keep {
+        background-color: var(--status-keep) !important;
+        color: #e65100;
+    }
+
+    .status-ng {
+        background-color: var(--status-ng) !important;
+        color: #757575;
+    }
+
+    .judge-cell {
+        font-weight: bold;
+        font-size: 0.7rem;
+    }
+}

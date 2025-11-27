@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScriptSheet</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="print.css" media="print">
+</head>
+
+<body>
+
+    <header id="app-header">
+        <div class="header-top">
+            <input type="text" id="header-title" class="header-input title-input" placeholder="OO組「XXXX」スクリプトシート"
+                oninput="updateHeader()">
+            <input type="date" id="header-date" class="header-input date-input" oninput="updateHeader()">
+        </div>
+
+        <div class="controls-area">
+            <div class="control-row">
+                <div class="day-selector">
+                    <select id="day-select" onchange="switchDay(this.value)"></select>
+                    <button class="secondary small" onclick="addDay()">+日</button>
+                    <button class="danger small" onclick="deleteDay()">-日</button>
+                </div>
+            </div>
+
+            <div class="control-row">
+                <button id="btn-print" class="accent" onclick="printSheet()">印刷</button>
+                <label class="filter-label">
+                    <input type="checkbox" id="filter-ok" onchange="toggleFilter()">
+                    OK/Keep
+                </label>
+                <div style="flex-grow:1;"></div>
+                <button class="secondary" onclick="exportJSON()">保存</button>
+                <button class="secondary" onclick="document.getElementById('file-input').click()">読込</button>
+                <input type="file" id="file-input" accept=".json" style="display:none" onchange="importJSON(this)">
+                <button class="danger" onclick="clearData()">削除</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="table-container">
+        <table id="script-table">
+            <thead>
+                <tr>
+                    <th class="col-action">操作</th>
+                    <th class="col-s">S</th>
+                    <th class="col-c">C</th>
+                    <th class="col-t">T</th>
+                    <th class="col-clip">クリップ名</th>
+                    <th class="col-judge">判定</th>
+                    <th class="col-scene">場面</th>
+                    <th class="col-ng">NG理由</th>
+                    <th class="col-remarks">備考</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+                <!-- Rows will be generated here -->
+            </tbody>
+        </table>
+    </div>
+
+    <div class="fab-container">
+        <button class="fab sub-fab" onclick="addLocationRow()" title="場所行を追加">場</button>
+        <button class="fab main-fab" onclick="addRow()" title="行を追加">+</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

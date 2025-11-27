@@ -1,0 +1,536 @@
+:root {
+    --color-base: #ffffff;
+    --color-text: #32353d;
+    --color-accent: #8c1822;
+    --color-border: #e0e0e0;
+    --color-bg-gray: #f5f5f5;
+
+    --status-ok: #ffcccc;
+    --status-keep: #ffe0b2;
+    --status-ng: #e0e0e0;
+    --status-blank: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+    touch-action: manipulation;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--color-text);
+    background-color: var(--color-base);
+    padding-top: 160px;
+    padding-bottom: 100px;
+}
+
+/* Header */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--color-base);
+    border-bottom: 2px solid var(--color-accent);
+    z-index: 1000;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    min-height: 160px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.header-input {
+    border: 1px solid transparent;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 700;
+    color: var(--color-text);
+    background: transparent;
+}
+
+.header-input:hover,
+.header-input:focus {
+    border: 1px solid var(--color-border);
+    background: #fff;
+}
+
+.title-input {
+    font-size: 1.2rem;
+    width: 60%;
+    color: var(--color-accent);
+}
+
+.date-input {
+    font-size: 1rem;
+    width: 35%;
+    text-align: right;
+}
+
+.controls-area {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.control-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 2px;
+}
+
+/* Buttons */
+button {
+    background-color: var(--color-text);
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    font-family: inherit;
+    flex-shrink: 0;
+}
+
+button.accent {
+    background-color: var(--color-accent);
+}
+
+button.danger {
+    background-color: #d32f2f;
+}
+
+button.secondary {
+    background-color: #757575;
+}
+
+button.small {
+    padding: 4px 8px;
+    font-size: 0.8rem;
+}
+
+/* Inputs */
+input[type="text"],
+input[type="tel"],
+input[type="number"],
+input[type="date"],
+select {
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    padding: 6px;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.clip-setting {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.9rem;
+}
+
+.clip-setting input {
+    width: 100px;
+}
+
+.day-selector {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.filter-label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.9rem;
+    user-select: none;
+}
+
+/* Table */
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 900px;
+}
+
+th,
+td {
+    border: 1px solid var(--color-border);
+    padding: 4px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+th {
+    background-color: var(--color-bg-gray);
+    font-weight: 500;
+    color: var(--color-text);
+    white-space: nowrap;
+    height: 30px;
+}
+
+/* Column Widths */
+.col-action {
+    width: 40px;
+}
+
+.col-s {
+    width: 50px;
+}
+
+.col-c {
+    width: 50px;
+}
+
+.col-t {
+    width: 50px;
+}
+
+.col-clip {
+    width: 110px;
+}
+
+.col-judge {
+    width: 70px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.col-scene {
+    width: 140px;
+}
+
+.col-ng {
+    width: 140px;
+}
+
+.col-remarks {
+    min-width: 140px;
+}
+
+/* Inputs in Table */
+td input {
+    width: 100%;
+    border: none;
+    background: transparent;
+    text-align: center;
+    padding: 4px;
+    font-size: 1rem;
+    height: 100%;
+}
+
+td input:focus {
+    outline: 2px solid var(--color-accent);
+    background: #fff;
+}
+
+td.judge-cell {
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+/* Status Colors */
+.status-ok {
+    background-color: var(--status-ok) !important;
+    color: #b71c1c;
+}
+
+.status-keep {
+    background-color: var(--status-keep) !important;
+    color: #e65100;
+}
+
+.status-ng {
+    background-color: var(--status-ng) !important;
+    color: #757575;
+}
+
+.location-input {
+    color: #d32f2f;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+/* FAB */
+.fab-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    z-index: 100;
+}
+
+.fab {
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    border: none;
+}
+
+.main-fab {
+    background-color: var(--color-accent);
+    color: white;
+    width: 60px;
+    height: 60px;
+    font-size: 30px;
+}
+
+.sub-fab {
+    background-color: #fff;
+    color: var(--color-accent);
+    width: 45px;
+    height: 45px;
+    font-size: 16px;
+    font-weight: bold;
+    border: 2px solid var(--color-accent);
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+
+    /* Body and header height adjustments */
+    body {
+        padding-top: 200px;
+    }
+
+    header {
+        min-height: 200px;
+    }
+
+    /* Header Adjustments */
+    .header-top {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 5px;
+    }
+
+    .title-input {
+        width: 100%;
+        font-size: 1rem;
+    }
+
+    .date-input {
+        width: 100%;
+        text-align: left;
+    }
+
+    .control-row {
+        flex-wrap: wrap;
+        gap: 5px;
+        overflow-x: visible;
+    }
+
+    /* Button Adjustments for Mobile */
+    button {
+        flex-shrink: 1;
+        padding: 6px 10px;
+        font-size: 0.85rem;
+        min-width: fit-content;
+    }
+
+    button.small {
+        padding: 3px 6px;
+        font-size: 0.75rem;
+    }
+
+    /* Table Layout for Mobile */
+    table {
+        min-width: auto;
+    }
+
+    thead {
+        display: none;
+    }
+
+    tbody tr {
+        display: flex;
+        flex-wrap: wrap;
+        border-bottom: 1px solid var(--color-border);
+        padding: 5px 0;
+    }
+
+    tbody td {
+        display: block;
+        padding: 2px;
+        border: none;
+    }
+
+    /* Column Widths & Orders for Mobile */
+    .col-action-cell {
+        width: 10%;
+        order: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .col-s {
+        width: 14%;
+        order: 2;
+    }
+
+    .col-c {
+        width: 14%;
+        order: 3;
+    }
+
+    .col-t {
+        width: 14%;
+        order: 4;
+    }
+
+    .col-clip {
+        width: 28%;
+        order: 5;
+    }
+
+    .col-judge {
+        width: 20%;
+        order: 6;
+    }
+
+    /* Line 2: Scene, NG, Remarks */
+    .col-scene {
+        width: 30%;
+        order: 7;
+    }
+
+    .col-ng {
+        width: 35%;
+        order: 8;
+    }
+
+    .col-remarks {
+        width: 35%;
+        order: 9;
+    }
+
+    /* Input Styling for Mobile */
+    td input {
+        border: 1px solid #eee;
+        border-radius: 4px;
+        background: #f9f9f9;
+        font-size: 16px;
+        height: 44px;
+        padding: 8px;
+    }
+
+    td input:focus {
+        background: #fff;
+        border-color: var(--color-accent);
+    }
+
+    /* Location Row Special Handling */
+    .location-row {
+        background-color: #fff3e0;
+    }
+
+    .location-row .col-action-cell {
+        width: 10%;
+    }
+
+    .location-row td:not(.col-action-cell) {
+        width: 90%;
+        order: 2;
+    }
+
+    /* Column Labels for Mobile */
+    .col-s::before {
+        content: "S";
+        display: block;
+        font-size: 0.75rem;
+        color: #666;
+        margin-bottom: 2px;
+        font-weight: bold;
+    }
+
+    .col-c::before {
+        content: "C";
+        display: block;
+        font-size: 0.75rem;
+        color: #666;
+        margin-bottom: 2px;
+        font-weight: bold;
+    }
+
+    .col-t::before {
+        content: "T";
+        display: block;
+        font-size: 0.75rem;
+        color: #666;
+        margin-bottom: 2px;
+        font-weight: bold;
+    }
+
+    .col-clip::before {
+        content: "クリップ名";
+        display: block;
+        font-size: 0.75rem;
+        color: #666;
+        margin-bottom: 2px;
+        font-weight: bold;
+    }
+
+    .col-judge::before {
+        content: "判定";
+        display: block;
+        font-size: 0.75rem;
+        color: #666;
+        margin-bottom: 2px;
+        font-weight: bold;
+    }
+
+    .col-scene::before {
+        content: "場面";
+        display: block;
+        font-size: 0.75rem;
+        color: #666;
+        margin-bottom: 2px;
+        font-weight: bold;
+    }
+
+    .col-ng::before {
+        content: "NG理由";
+        display: block;
+        font-size: 0.75rem;
+        color: #666;
+        margin-bottom: 2px;
+        font-weight: bold;
+    }
+
+    .col-remarks::before {
+        content: "備考";
+        display: block;
+        font-size: 0.75rem;
+        color: #666;
+        margin-bottom: 2px;
+        font-weight: bold;
+    }
+}
