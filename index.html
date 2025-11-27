@@ -13,6 +13,17 @@
 </head>
 
 <body>
+    <!-- Feedback Banner -->
+    <div class="feedback-banner no-print" role="alert">
+        <p class="font-bold">ベータ版として公開中</p>
+        <p>
+            不具合・ご要望は
+            <a href="https://forms.gle/pP3WoxS2an3MjTcT6" target="_blank" rel="noopener noreferrer">
+                こちらのフォーム
+            </a>
+            よりお知らせください。
+        </p>
+    </div>
 
     <header id="app-header">
         <div class="header-top">
@@ -34,8 +45,9 @@
                 <button id="btn-print" class="accent" onclick="printSheet()">印刷</button>
                 <label class="filter-label">
                     <input type="checkbox" id="filter-ok" onchange="toggleFilter()">
-                    OK/Keep
+                    OK/Keepのみ
                 </label>
+                <button class="secondary small" onclick="reloadTable()">再読み込み</button>
                 <div style="flex-grow:1;"></div>
                 <button class="secondary" onclick="exportJSON()">保存</button>
                 <button class="secondary" onclick="document.getElementById('file-input').click()">読込</button>

@@ -1,6 +1,11 @@
 /* Print-specific styles */
 @media print {
 
+    /* Hide elements with no-print class */
+    .no-print {
+        display: none !important;
+    }
+
     /* Page setup for B4 */
     @page {
         size: B4;

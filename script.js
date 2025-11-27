@@ -100,7 +100,7 @@ function updateHeader() {
 }
 
 function updateClipSetting() {
-    appData.clipSetting = document.getElementById('clip-start').value;
+    // clip-start element removed from UI
     saveData();
 }
 
@@ -112,7 +112,6 @@ function updateHeaderInputs() {
         document.getElementById('header-date').value = currentDay.date || '';
     }
 
-    document.getElementById('clip-start').value = appData.clipSetting;
     updatePrintHeader();
 }
 
@@ -365,6 +364,10 @@ function toggleFilter() {
     render();
 }
 
+function reloadTable() {
+    render();
+}
+
 
 
 // Print
@@ -376,7 +379,7 @@ function printSheet() {
 // JSON
 function exportJSON() {
     const dataStr = JSON.stringify(appData, null, 2);
-    const blob = new Blob([dataStr], { type: "application/json" });
+    const blob = new Blob([dataStr], { type: "application/json;charset=utf-8" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
@@ -410,6 +413,6 @@ function importJSON(input) {
             alert('読み込みに失敗しました。');
         }
     };
-    reader.readAsText(file);
+    reader.readAsText(file, 'UTF-8');
     input.value = '';
 }
