@@ -4,7 +4,7 @@ let appData = {
     clipSetting: '100-001',
     currentDayId: 'day1',
     days: {
-        'day1': { date: '', rows: [] }
+        'day1': { date: getTodayDate(), rows: [] }
     }
 };
 
@@ -75,7 +75,7 @@ function clearData() {
             title: 'OO組「XXXX」スクリプトシート',
             clipSetting: '100-001',
             currentDayId: 'day1',
-            days: { 'day1': { date: '', rows: [] } }
+            days: { 'day1': { date: getTodayDate(), rows: [] } }
         };
         saveData();
         updateHeaderInputs();
@@ -149,7 +149,7 @@ function switchDay(dayId) {
 function addDay() {
     const newId = 'day' + Date.now();
     appData.days[newId] = {
-        date: '',
+        date: getTodayDate(),
         rows: []
     };
     appData.currentDayId = newId;
@@ -415,4 +415,12 @@ function importJSON(input) {
     };
     reader.readAsText(file, 'UTF-8');
     input.value = '';
+}
+
+function getTodayDate() {
+    const d = new Date();
+    const year = d.getFullYear();
+    const month = (d.getMonth() + 1).toString().padStart(2, '0');
+    const day = d.getDate().toString().padStart(2, '0');
+    return `${year}-${month}-${day}`;
 }
