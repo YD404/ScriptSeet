@@ -28,6 +28,11 @@ window.onload = () => {
     }
     renderDaySelector();
     updateHeaderInputs();
+    // フィルタチェックボックスを明示的にオフに設定
+    const filterCheckbox = document.getElementById('filter-ok');
+    if (filterCheckbox) {
+        filterCheckbox.checked = false;
+    }
     render();
 };
 
@@ -174,10 +179,12 @@ function deleteDay() {
 function render() {
     const tbody = document.getElementById('table-body');
     tbody.innerHTML = '';
-    const filterEnabled = document.getElementById('filter-ok').checked;
+    const filterCheckbox = document.getElementById('filter-ok');
+    const filterEnabled = filterCheckbox ? filterCheckbox.checked : false;
     const currentRows = appData.days[appData.currentDayId].rows;
 
     currentRows.forEach((row, index) => {
+        // フィルタが有効な場合、ロケーション行以外でOK/Keep以外は非表示
         if (filterEnabled && row.type !== 'location' && row.status !== 'OK' && row.status !== 'Keep') {
             return;
         }
@@ -266,7 +273,7 @@ function addRow() {
         c: '',
         t: '1',
         clip: '',
-        status: '',
+        status: '空',
         scene: '',
         ng: '',
         remarks: ''

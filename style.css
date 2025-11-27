@@ -225,7 +225,7 @@ th {
 }
 
 .col-remarks {
-    min-width: 140px;
+    width: 140px;
 }
 
 /* Inputs in Table */
