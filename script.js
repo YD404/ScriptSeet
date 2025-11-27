@@ -364,9 +364,7 @@ function toggleFilter() {
     render();
 }
 
-function reloadTable() {
-    render();
-}
+
 
 
 
