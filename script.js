@@ -21,6 +21,13 @@ const STATUS_OPTS = [
 
 // Initialization
 window.onload = () => {
+    // Register Service Worker
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('./sw.js')
+            .then((reg) => console.log('Service Worker Registered', reg))
+            .catch((err) => console.log('Service Worker Register Failed', err));
+    }
+
     loadData();
     // Ensure current day exists
     if (!appData.days[appData.currentDayId]) {
